@@ -1,0 +1,4 @@
+﻿  ClientSide.cpp
+C:\Users\flavi\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ClientSide\ClientSide.cpp(80,74): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\flavi\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ClientSide\ClientSide.cpp(32,10): warning C4101: 'buffer': unreferenced local variable
+  ClientSide.vcxproj -> C:\Users\flavi\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\x64\Debug\ClientSide.exe
