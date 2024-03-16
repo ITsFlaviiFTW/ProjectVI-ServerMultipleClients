@@ -106,7 +106,7 @@ int main() {
 
         // Create the packet data
         stringstream packet;
-        packet << id << ',' << parseTimestamp(timestamp).time_since_epoch().count() << ',' << fuelString;
+        packet << id << ',' << parseTimestamp(timestamp).time_since_epoch().count() << ',' << fuelString << ',' << eof;
 
         // Send the packet to the server
         int sendOk = sendto(sock, packet.str().c_str(), packet.str().size(), 0, (sockaddr*)&server, sizeof(server));
