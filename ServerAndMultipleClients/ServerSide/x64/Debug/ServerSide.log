@@ -1,0 +1,133 @@
+﻿  ServerSide.cpp
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(14,32): error C2065: 'fuelAmounts': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(14,54): error C2065: 'fuelAmounts': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(15,74): error C2065: 'timestamps': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(15,94): error C2065: 'timestamps': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(15,30): error C3083: 'chrono': the symbol to the left of a '::' must be a type
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(15,38): error C2039: 'duration_cast': is not a member of 'std'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\iostream(18,1):
+  see declaration of 'std'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(15,38): error C2065: 'duration_cast': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(15,57): error C3083: 'chrono': the symbol to the left of a '::' must be a type
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(15,65): error C2039: 'seconds': is not a member of 'std'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\iostream(18,1):
+  see declaration of 'std'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(15,65): error C2065: 'seconds': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(16,9): error C2059: syntax error: 'if'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(18,9): error C2059: syntax error: 'return'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(19,5): error C2059: syntax error: '}'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(19,5): error C2143: syntax error: missing ';' before '}'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(20,1): error C2143: syntax error: missing ';' before '}'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(20,1): error C2059: syntax error: '}'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(23,6): error C3083: 'chrono': the symbol to the left of a '::' must be a type
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(23,14): error C3083: 'system_clock': the symbol to the left of a '::' must be a type
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(23,28): error C2039: 'time_point': is not a member of 'std'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\iostream(18,1):
+  see declaration of 'std'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(23,53): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(23,39): error C2146: syntax error: missing ';' before identifier 'parseTimestamp'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(23,87): error C2143: syntax error: missing ';' before '{'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(23,87): error C2447: '{': missing function header (old-style formal list?)
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(34,6): error C2039: 'unordered_map': is not a member of 'std'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\iostream(18,1):
+  see declaration of 'std'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(34,19): error C2143: syntax error: missing ';' before '<'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(34,19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(34,19): error C2059: syntax error: '<'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(38,24): error C2079: 'ss' uses undefined class 'std::basic_istringstream<char,std::char_traits<char>,std::allocator<char>>'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(38,26): error C2440: 'initializing': cannot convert from 'const std::string' to 'int'
+  C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(38,26):
+  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(41,10): error C3083: 'chrono': the symbol to the left of a '::' must be a type
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(41,18): error C3083: 'system_clock': the symbol to the left of a '::' must be a type
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(41,32): error C2039: 'time_point': is not a member of 'std'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\iostream(18,1):
+  see declaration of 'std'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(41,43): error C2146: syntax error: missing ';' before identifier 'timestamp'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(41,43): error C2065: 'timestamp': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(43,10): error C2039: 'getline': is not a member of 'std'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\iostream(18,1):
+  see declaration of 'std'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(43,10): error C3861: 'getline': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(44,10): error C2039: 'getline': is not a member of 'std'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\iostream(18,1):
+  see declaration of 'std'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(44,10): error C3861: 'getline': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(45,10): error C2039: 'getline': is not a member of 'std'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\iostream(18,1):
+  see declaration of 'std'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(45,10): error C3861: 'getline': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(48,5): error C2065: 'timestamp': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(48,17): error C3861: 'parseTimestamp': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(49,10): error C2039: 'getline': is not a member of 'std'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\iostream(18,1):
+  see declaration of 'std'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(49,10): error C3861: 'getline': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(50,17): error C2039: 'stod': is not a member of 'std'
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\iostream(18,1):
+  see declaration of 'std'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(50,17): error C3861: 'stod': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(52,9): error C2065: 'flights': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(52,29): error C2065: 'flights': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(53,9): error C2065: 'flights': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(53,23): error C3861: 'Flight': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(56,5): error C2065: 'flights': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(56,31): error C2065: 'timestamp': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(60,5): error C2084: function 'int main(void)' already has a body
+  C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(6,5):
+  see previous definition of 'main'
+  
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(61,5): error C2065: 'WSADATA': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(61,13): error C2146: syntax error: missing ';' before identifier 'wsaData'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(61,13): error C2065: 'wsaData': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(62,20): error C3861: 'MAKEWORD': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(62,37): error C2065: 'wsaData': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(62,9): error C3861: 'WSAStartup': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(64,5): error C2065: 'SOCKET': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(64,12): error C2146: syntax error: missing ';' before identifier 'ServerSocket'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(64,12): error C2065: 'ServerSocket': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(64,34): error C2065: 'AF_INET': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(64,43): error C2065: 'SOCK_DGRAM': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(64,55): error C2065: 'IPPROTO_UDP': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(64,27): error C3861: 'socket': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(65,9): error C2065: 'ServerSocket': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(65,25): error C2065: 'INVALID_SOCKET': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(66,9): error C3861: 'WSACleanup': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(70,5): error C2065: 'sockaddr_in': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(70,17): error C2146: syntax error: missing ';' before identifier 'SvrAddr'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(70,17): error C2065: 'SvrAddr': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(71,5): error C2065: 'SvrAddr': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(71,26): error C2065: 'AF_INET': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(72,5): error C2065: 'SvrAddr': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(72,31): error C2065: 'INADDR_ANY': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(73,5): error C2065: 'SvrAddr': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(73,24): error C3861: 'htons': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(74,14): error C2065: 'ServerSocket': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(74,47): error C2065: 'SvrAddr': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(74,63): error C2065: 'SvrAddr': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(74,9): error C3861: 'bind': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(74,76): error C2065: 'SOCKET_ERROR': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(75,21): error C2065: 'ServerSocket': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(75,9): error C3861: 'closesocket': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(76,9): error C3861: 'WSACleanup': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(84,9): error C2065: 'sockaddr_in': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(84,21): error C2146: syntax error: missing ';' before identifier 'CltAddr'
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(84,21): error C2065: 'CltAddr': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(85,26): error C2065: 'CltAddr': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(86,38): error C2065: 'ServerSocket': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(86,89): error C2065: 'CltAddr': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(86,29): error C3861: 'recvfrom': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(92,17): error C2065: 'ServerSocket': undeclared identifier
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(92,5): error C3861: 'closesocket': identifier not found
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ServerSide\ServerSide.cpp(93,5): error C3861: 'WSACleanup': identifier not found

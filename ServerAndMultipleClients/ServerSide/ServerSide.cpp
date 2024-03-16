@@ -1,15 +1,30 @@
-// ServerSide.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <unordered_map>
+#include <sstream>
+#include <vector>
+#include <string>
+#include <ctime>
+#include <iomanip>
+#include <chrono>
+#include <windows.networking.sockets.h>
+#pragma comment(lib, "Ws2_32.lib")
 
-int main()
-{
-    std::cout << "Hello World!\n";
-}
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+struct Flight {
+    std::string id;
+    std::vector<double> fuelAmounts;
+    std::vector<std::chrono::system_clock::time_point> timestamps;
+
+    Flight() = default; // Default constructor
+    Flight(const std::string& id) : id(id) {}
+
+    void addData(double fuel, const std::chrono::system_clock::time_point& timestamp) {
+        fuelAmounts.push_back(fuel);
+        timestamps.push_back(timestamp);
+    }
+
+    double calculateAverageConsumption() const {
+        if (fuelAmounts.size() < 2) return 0.0; // Need at least two points to calculate consumption
 
         double totalConsumed = fuelAmounts.front() - fuelAmounts.back();
         auto duration = std::chrono::duration_cast<std::chrono::seconds>(timestamps.back() - timestamps.front()).count();
@@ -86,6 +101,7 @@ int main() {
         int bytesReceived = recvfrom(ServerSocket, RxBuffer, 512, 0, (struct sockaddr*)&CltAddr, &len);
         if (bytesReceived > 0) {
             processPacket(std::string(RxBuffer, bytesReceived));
+            // Optionally, send back an acknowledgment or processed data to the client
         }
     }
 

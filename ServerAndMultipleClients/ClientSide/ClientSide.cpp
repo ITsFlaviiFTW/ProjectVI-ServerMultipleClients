@@ -12,9 +12,14 @@
 #include <Ws2tcpip.h>
 #include <random>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+#pragma comment(lib,"ws2_32.lib")
+
+// Parses the date-time string into a time_point
+std::chrono::system_clock::time_point parseTimestamp(const std::string& dateTime) {
+    std::tm t = {};
+    std::istringstream ss(dateTime);
+    ss >> std::get_time(&t, "%d_%m_%Y %H:%M:%S");
+    return std::chrono::system_clock::from_time_t(std::mktime(&t));
 }
 
 // Function to generate a unique flight ID based on the current time
