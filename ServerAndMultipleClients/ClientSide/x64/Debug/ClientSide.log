@@ -1,0 +1,9 @@
+﻿  ClientSide.cpp
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ClientSide\ClientSide.cpp(48,66): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ClientSide\ClientSide.cpp(48,66): warning C4267:         with
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ClientSide\ClientSide.cpp(48,66): warning C4267:         [
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ClientSide\ClientSide.cpp(48,66): warning C4267:             _Ty=int
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ClientSide\ClientSide.cpp(48,66): warning C4267:         ]
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ClientSide\ClientSide.cpp(107,74): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\ClientSide\ClientSide.cpp(59,10): warning C4101: 'buffer': unreferenced local variable
+  ClientSide.vcxproj -> C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\x64\Debug\ClientSide.exe
