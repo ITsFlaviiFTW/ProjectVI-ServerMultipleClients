@@ -16,21 +16,21 @@
 
 using namespace std;
 
-// Parses the date-time string into a time_point
 chrono::system_clock::time_point parseTimestamp(const string& dateTime) {
     tm t = {};
     istringstream ss(dateTime);
     ss >> get_time(&t, "%d_%m_%Y %H:%M:%S");
+    if (ss.fail()) {
+        cerr << "Failed to parse timestamp: " << dateTime << endl;
+        return chrono::system_clock::time_point();
+    }
     return chrono::system_clock::from_time_t(mktime(&t));
 }
 
-// Function to generate a unique flight ID based on the current time
 string generateFlightID() {
     auto now = chrono::system_clock::now();
     auto now_ms = chrono::time_point_cast<chrono::milliseconds>(now);
     auto value = now_ms.time_since_epoch().count();
-
-    // Generate a unique flight ID based on the current time
     stringstream ss;
     ss << hex << value;
     return ss.str();
@@ -81,46 +81,45 @@ int main() {
     //server.sin_addr.S_un.S_addr = inet_addr(serverAddress.c_str());
     inet_pton(AF_INET, serverAddress.c_str(), &server.sin_addr);
 
-    // Open the telemetry data file
-    ifstream telemetryFile(pickFlight());
-    string line;
     string id = generateFlightID();
-
+    ifstream telemetryFile(pickFlight());
     if (!telemetryFile.is_open()) {
         cerr << "Failed to open telemetry file." << endl;
         return 1;
     }
 
-    // Read and send each line of the file
+    string line;
     while (getline(telemetryFile, line)) {
-        // Check if it's the last line in the file
-        bool eof = telemetryFile.eof();
-
         stringstream linestream(line);
-        string timestamp, fuelString;
-        getline(linestream, timestamp, ',');
+        string dateTime, fuelString;
+        getline(linestream, dateTime, ',');
         getline(linestream, fuelString, ',');
 
-        // Remove any leading whitespace
-        fuelString.erase(0, fuelString.find_first_not_of(" "));
+        chrono::system_clock::time_point timePoint = parseTimestamp(dateTime);
+        if (timePoint == chrono::system_clock::time_point()) {
+            cerr << "Invalid timestamp skipped: " << dateTime << endl;
+            continue; // Skip this line and continue with the next one
+        }
 
-        // Create the packet data
+        long long timestamp = chrono::duration_cast<chrono::milliseconds>(timePoint.time_since_epoch()).count();
+
         stringstream packet;
-        packet << id << ',' << parseTimestamp(timestamp).time_since_epoch().count() << ',' << fuelString << ',' << eof;
+        packet << id << ',' << timestamp << ',' << fuelString;
+
+        if (telemetryFile.peek() == EOF) {
+            packet << ',' << "EOF";
+        }
+
+        string packetStr = packet.str();
+        cout << "Sending packet: " << packetStr << endl;
 
         // Send the packet to the server
-        int sendOk = sendto(sock, packet.str().c_str(), packet.str().size(), 0, (sockaddr*)&server, sizeof(server));
+        int sendOk = sendto(sock, packetStr.c_str(), packetStr.size(), 0, (sockaddr*)&server, sizeof(server));
         if (sendOk == SOCKET_ERROR) {
             cerr << "Sendto failed with error: " << WSAGetLastError() << endl;
             break;
         }
 
-        // If it's the last line, exit the loop
-        if (eof) {
-            break;
-        }
-
-        // Wait a bit before sending the next packet
         this_thread::sleep_for(chrono::milliseconds(100));
     }
 

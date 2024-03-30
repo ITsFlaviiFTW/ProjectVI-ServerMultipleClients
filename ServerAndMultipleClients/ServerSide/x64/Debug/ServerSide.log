@@ -1,2 +1,3 @@
 ﻿  ServerSide.cpp
-  ServerSide.vcxproj -> C:\Users\IZarn\source\repos\ProjectVI-ServerMultipleClients\ServerAndMultipleClients\x64\Debug\ServerSide.exe
+D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ServerSide\ServerSide.cpp(83,41): warning C4101: 'e': unreferenced local variable
+  ServerSide.vcxproj -> D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\x64\Debug\ServerSide.exe

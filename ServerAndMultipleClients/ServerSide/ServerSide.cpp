@@ -9,7 +9,6 @@
 #include <windows.networking.sockets.h>
 #pragma comment(lib, "Ws2_32.lib")
 
-
 struct Flight {
     std::string id;
     std::vector<double> fuelAmounts;
@@ -34,22 +33,16 @@ struct Flight {
     }
 };
 
-// Parsing example (note this is a simplification and may not handle all your date-time formats)
 std::chrono::system_clock::time_point parseTimestamp(const std::string& timestampStr) {
-    std::tm tm = {};
-    std::stringstream ss(timestampStr);
-    ss >> std::get_time(&tm, "%d_%m_%Y %H:%M:%S");
-    if (ss.fail()) {
-        throw std::runtime_error("Failed to parse timestamp");
-    }
-    return std::chrono::system_clock::from_time_t(std::mktime(&tm));
+    // Assuming the timestamp is in milliseconds
+    long long milliseconds = std::stoll(timestampStr);
+    auto duration = std::chrono::milliseconds(milliseconds);
+    return std::chrono::system_clock::time_point(duration);
 }
-
 
 std::unordered_map<std::string, Flight> flights;
 
 void processPacket(const std::string& packet) {
-    // Example packet format: ID,timestamp,fuel
     std::istringstream ss(packet);
     std::string id, timestampStr, fuelStr;
     double fuel = 0.0;
@@ -59,18 +52,47 @@ void processPacket(const std::string& packet) {
     std::getline(ss, timestampStr, ',');
     std::getline(ss, fuelStr);
 
-    // Parse and convert timestamp and fuel from the packet
-    timestamp = parseTimestamp(timestampStr);  // Function to parse timestamp
-    std::getline(ss, fuelStr);
-    fuel = std::stod(fuelStr);   // Convert fuel string to double
+    if (!timestampStr.empty() && timestampStr.find_first_not_of("0123456789") == std::string::npos && timestampStr[0] != '-') {
+        timestamp = parseTimestamp(timestampStr);
+
+        std::time_t time_readable = std::chrono::system_clock::to_time_t(timestamp);
+        if(time_readable < 0){
+            std::cerr << "Timestamp before 1970-01-01 00:00:00 UTC, cannot be converted to local time.\n";
+            return; // Handle time before epoch or invalid negative time
+        }
+
+        std::tm tm_buffer;
+        errno_t err = localtime_s(&tm_buffer, &time_readable); // Use localtime_s to convert safely to tm struct
+        if(err != 0){
+            std::cerr << "Error converting time to local time using localtime_s.\n";
+            return; // Handle error in conversion
+        }
+
+        std::ostringstream oss;
+        oss << std::put_time(&tm_buffer, "%c"); // Convert tm struct to string using put_time
+        std::cout << "Human-readable timestamp: " << oss.str() << std::endl;
+
+    } else {
+        std::cerr << "Invalid timestamp string: " << timestampStr << std::endl;
+        return; // Handle invalid timestamp string
+    }
+
+    try {
+        fuel = std::stod(fuelStr);
+    }
+    catch (const std::invalid_argument& e) {
+        std::cerr << "Invalid fuel value: " << fuelStr << std::endl;
+        return; // Handle invalid fuel value
+    }
 
     if (flights.find(id) == flights.end()) {
         flights[id] = Flight(id);
     }
 
     flights[id].addData(fuel, timestamp);
+    
+    // Here you can also check if the packet is the last one for the flight and calculate the average consumption
 }
-
 
 int main() {
     WSADATA wsaData;
