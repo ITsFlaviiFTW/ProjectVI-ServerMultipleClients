@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <chrono>
 #include <windows.networking.sockets.h>
+#include <thread>
 #pragma comment(lib, "Ws2_32.lib")
 
 struct Flight {
@@ -42,7 +43,7 @@ std::chrono::system_clock::time_point parseTimestamp(const std::string& timestam
 
 std::unordered_map<std::string, Flight> flights;
 
-void processPacket(const std::string& packet) {
+void processPacket(const std::string& packet, const sockaddr_in& clientAddr) {
     std::istringstream ss(packet);
     std::string id, timestampStr, fuelStr;
     double fuel = 0.0;
@@ -94,12 +95,38 @@ void processPacket(const std::string& packet) {
     // Here you can also check if the packet is the last one for the flight and calculate the average consumption
 }
 
+void handleClientSession(SOCKET serverSocket, sockaddr_in clientAddr, std::string initialPacket) {
+    // Process the initial packet
+    processPacket(initialPacket, clientAddr);
+
+    // Continue processing incoming packets
+    char RxBuffer[512];
+    int len = sizeof(clientAddr);
+
+    while (true) {
+        int bytesReceived = recvfrom(serverSocket, RxBuffer, 512, 0, (struct sockaddr*)&clientAddr, &len);
+        if (bytesReceived > 0) {
+            std::string packet(RxBuffer, bytesReceived);
+            // Check for "EOF" message
+            if (packet.find("EOF") != std::string::npos) {
+                // Handle end of session, calculate average fuel consumption, etc.
+                break;
+            }
+            processPacket(packet, clientAddr);
+        }
+    }
+}
+
 int main() {
     WSADATA wsaData;
-    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) return -1;
+    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+        std::cerr << "Winsock Initialization failed." << std::endl;
+        return -1;
+    }
 
     SOCKET ServerSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
     if (ServerSocket == INVALID_SOCKET) {
+        std::cerr << "Socket creation failed." << std::endl;
         WSACleanup();
         return -1;
     }
@@ -109,21 +136,24 @@ int main() {
     SvrAddr.sin_addr.s_addr = INADDR_ANY;
     SvrAddr.sin_port = htons(27000);
     if (bind(ServerSocket, (struct sockaddr*)&SvrAddr, sizeof(SvrAddr)) == SOCKET_ERROR) {
+        std::cerr << "Binding socket failed." << std::endl;
         closesocket(ServerSocket);
         WSACleanup();
         return -1;
     }
 
-    std::cout << "Server is ready to receive on port 27000\n";
+    std::cout << "Server is ready to receive on port 27000" << std::endl;
 
     while (true) {
         char RxBuffer[512] = {};
         sockaddr_in CltAddr;
         int len = sizeof(CltAddr);
+
         int bytesReceived = recvfrom(ServerSocket, RxBuffer, 512, 0, (struct sockaddr*)&CltAddr, &len);
         if (bytesReceived > 0) {
-            processPacket(std::string(RxBuffer, bytesReceived));
-            // Optionally, send back an acknowledgment or processed data to the client
+            std::string packet(RxBuffer, bytesReceived);
+            std::thread clientThread(handleClientSession, ServerSocket, CltAddr, packet);
+            clientThread.detach(); // Detach the thread to allow it to run independently
         }
     }
 
