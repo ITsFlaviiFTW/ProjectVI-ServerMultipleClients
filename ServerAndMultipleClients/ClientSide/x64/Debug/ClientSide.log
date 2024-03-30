@@ -1,9 +1,9 @@
 ﻿  ClientSide.cpp
-D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(50,61): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
-D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(50,61): warning C4267:         with
-D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(50,61): warning C4267:         [
-D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(50,61): warning C4267:             _Ty=int
-D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(50,61): warning C4267:         ]
-D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(117,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(61,10): warning C4101: 'buffer': unreferenced local variable
+D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(47,61): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(47,61): warning C4267:         with
+D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(47,61): warning C4267:         [
+D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(47,61): warning C4267:             _Ty=int
+D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(47,61): warning C4267:         ]
+D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(96,78): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\ClientSide\ClientSide.cpp(124,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   ClientSide.vcxproj -> D:\School Files\Year 3 Winter Semester\Project VI\ProjVI\ServerAndMultipleClients\x64\Debug\ClientSide.exe

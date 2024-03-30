@@ -38,10 +38,7 @@ string generateFlightID() {
 
 string pickFlight() {
     vector<string> telemetryFiles = {
-        "katl-kefd-B737-700.txt",
-        "Telem_2023_3_12 14_56_40.txt",
-        "Telem_2023_3_12 16_26_4.txt",
-        "Telem_czba-cykf-pa28-w2_2023_3_1 12_31_27.txt"
+        "Test.txt"
     };
 
     // Generate a random index
@@ -58,27 +55,26 @@ int main() {
     WSADATA wsaData;
     SOCKET sock;
     struct sockaddr_in server;
-    char buffer[512];
     string serverAddress = "127.0.0.1"; // Server IP
     int port = 27000; // Server port
 
     // Initialize Winsock
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        cerr << "Winsock Initialization failed." << endl;
+        std::cerr << "Winsock Initialization failed." << std::endl;
         return 1;
     }
 
     // Create a UDP socket
     sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (sock == INVALID_SOCKET) {
-        cerr << "Socket creation failed." << endl;
+        std::cerr << "Socket creation failed." << std::endl;
+        WSACleanup();
         return 1;
     }
 
     // Set up the server address structure
     server.sin_family = AF_INET;
     server.sin_port = htons(port);
-    //server.sin_addr.S_un.S_addr = inet_addr(serverAddress.c_str());
     inet_pton(AF_INET, serverAddress.c_str(), &server.sin_addr);
 
     string id = generateFlightID();
@@ -89,7 +85,22 @@ int main() {
     }
 
     string line;
-    while (getline(telemetryFile, line)) {
+    bool isLastLine = false;
+
+    while (getline(telemetryFile, line) || isLastLine) {
+        if (isLastLine) {
+            stringstream eofPacket;
+            eofPacket << id << ",EOF";
+            string eofPacketStr = eofPacket.str();
+            cout << "Sending EOF packet: " << eofPacketStr << endl;
+            int sendOk = sendto(sock, eofPacketStr.c_str(), eofPacketStr.size(), 0, (sockaddr*)&server, sizeof(server));
+            if (sendOk == SOCKET_ERROR) {
+                cerr << "Sendto failed with error: " << WSAGetLastError() << endl;
+            }
+            break; // Exit the loop after sending EOF
+        }
+
+        // Parse the line into timestamp and fuel
         stringstream linestream(line);
         string dateTime, fuelString;
         getline(linestream, dateTime, ',');
@@ -98,17 +109,13 @@ int main() {
         chrono::system_clock::time_point timePoint = parseTimestamp(dateTime);
         if (timePoint == chrono::system_clock::time_point()) {
             cerr << "Invalid timestamp skipped: " << dateTime << endl;
-            continue; // Skip this line and continue with the next one
+            continue;
         }
 
         long long timestamp = chrono::duration_cast<chrono::milliseconds>(timePoint.time_since_epoch()).count();
 
         stringstream packet;
         packet << id << ',' << timestamp << ',' << fuelString;
-
-        if (telemetryFile.peek() == EOF) {
-            packet << ',' << "EOF";
-        }
 
         string packetStr = packet.str();
         cout << "Sending packet: " << packetStr << endl;
@@ -121,6 +128,9 @@ int main() {
         }
 
         this_thread::sleep_for(chrono::milliseconds(100));
+
+        // Check if the next read would hit EOF
+        isLastLine = telemetryFile.peek() == EOF;
     }
 
     // Cleanup

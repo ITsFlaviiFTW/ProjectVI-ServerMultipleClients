@@ -8,6 +8,7 @@
 #include <chrono>
 #include <windows.networking.sockets.h>
 #include <thread>
+#include <mutex>
 #pragma comment(lib, "Ws2_32.lib")
 
 struct Flight {
@@ -41,59 +42,70 @@ std::chrono::system_clock::time_point parseTimestamp(const std::string& timestam
     return std::chrono::system_clock::time_point(duration);
 }
 
-std::unordered_map<std::string, Flight> flights;
+std::mutex flightsMutex; // Global mutex for synchronizing access to the flights map
+std::unordered_map<std::string, Flight> flights; // Global map to track flight data
 
 void processPacket(const std::string& packet, const sockaddr_in& clientAddr) {
     std::istringstream ss(packet);
-    std::string id, timestampStr, fuelStr;
+    std::string id, timestampStr, fuelStr, eofFlag;
     double fuel = 0.0;
     std::chrono::system_clock::time_point timestamp;
 
+    // Parse the packet
     std::getline(ss, id, ',');
-    std::getline(ss, timestampStr, ',');
-    std::getline(ss, fuelStr);
+    if (ss.peek() == 'E') {  // Check if the next character is the beginning of "EOF"
+        ss >> eofFlag;
+    }
+    else {
+        std::getline(ss, timestampStr, ',');
+        std::getline(ss, fuelStr, ',');
+    }
 
+    // Convert and validate the timestamp
     if (!timestampStr.empty() && timestampStr.find_first_not_of("0123456789") == std::string::npos && timestampStr[0] != '-') {
         timestamp = parseTimestamp(timestampStr);
 
+        // Convert to time_t for human-readable format
         std::time_t time_readable = std::chrono::system_clock::to_time_t(timestamp);
-        if(time_readable < 0){
-            std::cerr << "Timestamp before 1970-01-01 00:00:00 UTC, cannot be converted to local time.\n";
-            return; // Handle time before epoch or invalid negative time
-        }
+        std::tm tm_buffer = {};
+        localtime_s(&tm_buffer, &time_readable); // Use secure localtime_s in Windows
 
-        std::tm tm_buffer;
-        errno_t err = localtime_s(&tm_buffer, &time_readable); // Use localtime_s to convert safely to tm struct
-        if(err != 0){
-            std::cerr << "Error converting time to local time using localtime_s.\n";
-            return; // Handle error in conversion
-        }
-
-        std::ostringstream oss;
-        oss << std::put_time(&tm_buffer, "%c"); // Convert tm struct to string using put_time
-        std::cout << "Human-readable timestamp: " << oss.str() << std::endl;
-
-    } else {
+        // Format and print the timestamp with the flight ID
+        std::cout << "Flight ID: " << id << " - Processed timestamp: " << std::put_time(&tm_buffer, "%c") << std::endl;
+    }
+    else {
         std::cerr << "Invalid timestamp string: " << timestampStr << std::endl;
         return; // Handle invalid timestamp string
     }
 
+    // Convert and validate the fuel amount
     try {
         fuel = std::stod(fuelStr);
+        // Print the fuel quantity with the flight ID
+        std::cout << "Flight ID: " << id << " - Processed fuel quantity: " << fuel << " units" << std::endl;
     }
     catch (const std::invalid_argument& e) {
         std::cerr << "Invalid fuel value: " << fuelStr << std::endl;
         return; // Handle invalid fuel value
     }
 
+    // Lock the flights map for safe access and handle the data
+    std::lock_guard<std::mutex> lock(flightsMutex);
     if (flights.find(id) == flights.end()) {
-        flights[id] = Flight(id);
+        flights[id] = Flight(id); // Create a new entry if it's a new flight
     }
+    flights[id].addData(fuel, timestamp); // Add the data to the flight
 
-    flights[id].addData(fuel, timestamp);
-    
-    // Here you can also check if the packet is the last one for the flight and calculate the average consumption
+    // Calculate the average fuel consumption if EOF flag is set
+    if (eofFlag == "EOF") {
+        // Print message when EOF flag is received
+        std::cout << "EOF received for Flight ID: " << id << std::endl;
+        // Handle EOF: Calculate average consumption, clean up, etc.
+        // ...
+    }
+    // Optionally, respond to the client if needed
 }
+
 
 void handleClientSession(SOCKET serverSocket, sockaddr_in clientAddr, std::string initialPacket) {
     // Process the initial packet
